@@ -16,7 +16,7 @@ targeted_domains <- unique(targeted_domains)
 
 targeted_df <- suffix_extract(domain(targeted_domains))
 
-df <- read_csv("hd2022.csv")
+df <- read_csv("ipeds/hd2022.csv")
 df$WEBADDR <- pull_domain(df$WEBADDR)
 
 df$WEBADDR <- gsub("www.","",df$WEBADDR)
@@ -27,7 +27,7 @@ colnames(targeted_df) <- c("WEBADDR")
 
 targeted_df <- left_join(targeted_df,df,by="WEBADDR")
 
-non_targeted_df <- read_csv("hd2022.csv")
+non_targeted_df <- read_csv("ipeds/hd2022.csv")
 non_targeted_df <- non_targeted_df %>% filter(is.na(ICLEVEL) | (ICLEVEL == 1)) %>% filter(!(UNITID %in% targeted_df$UNITID))
 
 random_rows <- sample(1:2617, 286, replace=FALSE)

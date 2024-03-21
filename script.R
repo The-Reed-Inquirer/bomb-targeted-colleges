@@ -28,7 +28,7 @@ targeted_domains <- unique(targeted_domains)
 
 targeted_df <- suffix_extract(domain(targeted_domains))
 
-df <- read_csv("hd2022.csv")
+df <- read_csv("ipeds/hd2022.csv")
 df$WEBADDR <- pull_domain(df$WEBADDR)
 
 df$WEBADDR <- gsub("www.","",df$WEBADDR)
@@ -54,7 +54,7 @@ for (i in 1:length(pres_names)) {
   pres_vec <- c(pres_vec,pres_names[[i]][1])
 }
 
-adm <- read_csv("adm2022.csv")
+adm <- read_csv("ipeds/adm2022.csv")
 
 df <- left_join(df,adm,by="UNITID")
 
